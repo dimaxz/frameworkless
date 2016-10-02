@@ -8,7 +8,6 @@ use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
 require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/config.php';
 
 /**
  * Dotenv setup
@@ -67,6 +66,8 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     }
 });
 
+
+require_once __DIR__ . '/config.php';
 
 /**
  * Dispatch
