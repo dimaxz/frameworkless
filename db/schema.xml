@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="default" defaultIdMethod="native"   >
+  <table name="tasks" idMethod="native" phpName="Task" namespace="Models\Task">
+    <column name="id" phpName="Id" type="INTEGER" size="10" sqlType="int(10) unsigned" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="created_at" phpName="CreatedAt" type="TIMESTAMP"/>
+    <column name="updated_at" phpName="UpdatedAt" type="TIMESTAMP"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="users" idMethod="native" phpName="User" namespace="Models\User">
+    <column name="id" phpName="Id" type="INTEGER" size="10" sqlType="int(10) unsigned" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="255" required="true"/>
+    <column name="email" phpName="Email" type="VARCHAR" size="255" required="true"/>
+    <column name="password" phpName="Password" type="VARCHAR" size="255" required="true"/>
+    <column name="remember_token" phpName="RememberToken" type="VARCHAR" size="100"/>
+    <column name="created_at" phpName="CreatedAt" type="TIMESTAMP"/>
+    <column name="updated_at" phpName="UpdatedAt" type="TIMESTAMP"/>
+    <unique name="users_email_unique">
+      <unique-column name="email"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+</database>

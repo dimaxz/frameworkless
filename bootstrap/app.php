@@ -8,7 +8,7 @@ use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
 require_once __DIR__ . '/../vendor/autoload.php';
-
+require_once __DIR__ . '/config.php';
 
 /**
  * Dotenv setup
@@ -22,8 +22,19 @@ $dotenv->load();
  */
 $whoops = new Run;
 if (getenv('MODE') === 'dev') {
+    error_reporting(-1);
+    ini_set('display_errors', 1);    
     $whoops->pushHandler(new PrettyPageHandler);
 } else {
+    ini_set('display_errors', 0);
+    if (version_compare(PHP_VERSION, '5.3', '>='))
+    {
+        error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
+    }
+    else
+    {
+        error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_USER_NOTICE);
+    }    
     $whoops->pushHandler(function () {
         Response::create('Uh oh, something broke internally.', Response::HTTP_INTERNAL_SERVER_ERROR)->send();
     });
@@ -36,7 +47,11 @@ $whoops->register();
  */
 $container = new Container();
 $container->add('Twig_Environment')
-    ->withArgument(new Twig_Loader_Filesystem(__DIR__ . '/../views/'));
+    ->withArgument(new Twig_Loader_Filesystem(__DIR__ . '/../app/views/'));
+
+$container->add(Models\User\UserRepo::class);
+
+
 $container->delegate(
     new ReflectionContainer() // Auto-wiring
 );

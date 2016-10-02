@@ -9,11 +9,13 @@
         "filp/whoops": "^2.1",
         "vlucas/phpdotenv": "^2.2",
         "twig/twig": "^1.24",
-	"propel/propel": "~2.0@dev"
+	"propel/propel": "~2.0@dev",
+	"donquixote/cellbrush"	:   "1.0.*"
     },
     "autoload": {
         "psr-4": {
-            "Frameworkless\\": "src/"
+            "Frameworkless\\": "app/",
+	    "Models\\": "app/Models"
         }
     }
 }
