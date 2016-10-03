@@ -1,14 +1,13 @@
 <?php
-
 $serviceContainer = \Propel\Runtime\Propel::getServiceContainer();
 $serviceContainer->checkVersion('2.0.0-dev');
 $serviceContainer->setAdapterClass('default', 'mysql');
 $manager = new \Propel\Runtime\Connection\ConnectionManagerSingle();
 $manager->setConfiguration(array (
   'classname' => 'Propel\\Runtime\\Connection\\ProfilerConnectionWrapper',
-  'dsn' => getenv('DB_CONN'),
-  'user' => getenv('DB_USER'),
-  'password' => getenv('DB_PASS'),
+  'dsn' => 'mysql:host=localhost:3336;dbname=homestead',
+  'user' => 'root',
+  'password' => '319114',
   'attributes' =>
   array (
     'ATTR_EMULATE_PREPARES' => false,
