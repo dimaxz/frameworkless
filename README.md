@@ -1,6 +1,7 @@
 # Frameworkless
-An admittedly overly simplistic example of combining popular composer packages into your own pseudo-framework. 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dimaxz/frameworkless/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dimaxz/frameworkless/?branch=master)
 
+An admittedly overly simplistic example of combining popular composer packages into your own pseudo-framework. 
 
 ## Why?
 For certain applications, a large framework like Symfony or Laravel isn't a great fit. For example, very simple websites lacking authentication, pagination, (many) forms and the like.
