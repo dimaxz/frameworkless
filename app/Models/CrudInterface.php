@@ -21,4 +21,6 @@ interface CrudInterface
     
     public function find(array $conditions = []);
     
+    public function build();
+    
 }

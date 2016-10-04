@@ -5,9 +5,9 @@
 		"default": {
 		    "adapter": "mysql",
 		    "classname": "Propel\\Runtime\\Connection\\ProfilerConnectionWrapper",
-		    "dsn": "mysql:host=%env.host%;dbname=%env.db%",
-		    "user": "%env.user%",
-		    "password": "%env.pass%",
+		    "dsn": "mysql:host=%env.HOST%;dbname=%env.DB%",
+		    "user": "%env.USER%",
+		    "password": "%env.PASS%",
 		    "attributes": [],
 		    "settings": {
 			"charset": "utf8",

@@ -7,7 +7,7 @@ namespace Frameworkless\Exceptions;
  *
  * @author Dmitriy
  */
-class Exception
+class ValidateException
 {
     //put your code here
 }

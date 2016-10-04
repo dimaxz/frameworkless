@@ -53,11 +53,25 @@ class UserRepo implements \Models\CrudInterface
      */
     public function save(ActiveRecordInterface $Model)
     {
+        if (!$Model->validate()) {
+            
+            throw new \Frameworkless\Exceptions\ValidateException("User not validate", $Model->getValidationFailures());
+        }        
+        
+        
         if (!$Model->save()) {
             throw new \DomainException(sprintf('User not save',$id));
         }
 
         return true;        
+    }
+    
+    /**
+     * 
+     * @return \Models\User\Models\User\User $User
+     */
+    public function build(){
+        return new User;
     }
 
 }

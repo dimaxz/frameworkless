@@ -66,4 +66,20 @@ class IndexController
             "table" => $table->render()
         ]));
     }
+    
+    public function add($args){
+        
+        $User = $this->UserRepo->build();
+        $User->setEmail('email.ru');
+        //VarDumper::dump($User);
+        
+        try{
+            $this->UserRepo->save($User);
+            return new Response("success create!");
+        } catch (\Exception $ex) {
+            return new Response("system error:" . $ex->getMessage());
+        }
+        
+        
+    }
 }
