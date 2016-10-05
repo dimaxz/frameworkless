@@ -2,10 +2,10 @@
 
 /**
  * Data object containing the SQL and PHP code to migrate the database
- * up to version 1475647555.
- * Generated on 2016-10-05 09:05:55 
+ * up to version 1475694269.
+ * Generated on 2016-10-05 22:04:29 
  */
-class PropelMigration_1475647555
+class PropelMigration_1475694269
 {
     public $comment = '';
 
@@ -64,15 +64,6 @@ CREATE TABLE `users`
     UNIQUE INDEX `users_email_unique` (`email`)
 ) ENGINE=InnoDB;
 
-CREATE TABLE `selfprice`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(50),
-    `datecreate` DATETIME,
-    `desc` VARCHAR(255),
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
-
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
 ',
@@ -96,8 +87,6 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `tasks`;
 
 DROP TABLE IF EXISTS `users`;
-
-DROP TABLE IF EXISTS `selfprice`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

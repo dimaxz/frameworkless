@@ -42,7 +42,7 @@ class IndexController
      */
     public function get($args)
     {
-
+        
         $Users = $this->UserRepo->findMany();
 
         $table = \Donquixote\Cellbrush\Table\Table::create();
