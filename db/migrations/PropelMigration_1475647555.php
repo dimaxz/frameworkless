@@ -2,10 +2,10 @@
 
 /**
  * Data object containing the SQL and PHP code to migrate the database
- * up to version 1475520687.
- * Generated on 2016-10-03 21:51:27 
+ * up to version 1475647555.
+ * Generated on 2016-10-05 09:05:55 
  */
-class PropelMigration_1475520687
+class PropelMigration_1475647555
 {
     public $comment = '';
 
@@ -43,15 +43,35 @@ class PropelMigration_1475520687
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP TABLE IF EXISTS `migrations`;
+CREATE TABLE `tasks`
+(
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS `password_resets`;
+CREATE TABLE `users`
+(
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+    `remember_token` VARCHAR(100),
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX `users_email_unique` (`email`)
+) ENGINE=InnoDB;
 
-ALTER TABLE `tasks`
-
-  DROP `name`,
-
-  DROP `user_id`;
+CREATE TABLE `selfprice`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(50),
+    `datecreate` DATETIME,
+    `desc` VARCHAR(255),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
@@ -73,26 +93,11 @@ SET FOREIGN_KEY_CHECKS = 1;
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-ALTER TABLE `tasks`
+DROP TABLE IF EXISTS `tasks`;
 
-  ADD `name` VARCHAR(50) AFTER `updated_at`,
+DROP TABLE IF EXISTS `users`;
 
-  ADD `user_id` INTEGER AFTER `name`;
-
-CREATE TABLE `migrations`
-(
-    `migration` VARCHAR(255) NOT NULL,
-    `batch` INTEGER NOT NULL
-) ENGINE=InnoDB;
-
-CREATE TABLE `password_resets`
-(
-    `email` VARCHAR(255) NOT NULL,
-    `token` VARCHAR(255) NOT NULL,
-    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    INDEX `password_resets_email_index` (`email`),
-    INDEX `password_resets_token_index` (`token`)
-) ENGINE=InnoDB;
+DROP TABLE IF EXISTS `selfprice`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
