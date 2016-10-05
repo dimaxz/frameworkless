@@ -11,12 +11,12 @@
 Я провел значительное время, выбирая пакеты, отдавая предпочтение тем, которые используются в существующих больших приложениях или фреймворках. Вот что я выделил:
 
 **[nikic/fast-route](https://github.com/nikic/FastRoute)** Популярная библиотека маршрутизации [Slim](http://www.slimframework.com).  
-**[filp/whoops](https://github.com/filp/whoops)** Впечатляюще потрясающий обработчик ошибок.
+**[filp/whoops](https://github.com/filp/whoops)** Впечатляюще потрясающий обработчик ошибок.  
 **[symfony/http-foundation](https://github.com/symfony/http-foundation)** Обработка запросов и возврата ответа.  
-**[league/container](https://github.com/thephpleague/container)** Популярная библиотека для инъекции зависимостей
+**[league/container](https://github.com/thephpleague/container)** Популярная библиотека для инъекции зависимостей  
 **[twig/twig](https://github.com/twigphp/Twig)** Надежный шаблонизатор.  
-**[vlucas/phpdotenv](https://github.com/vlucas/phpdotenv)** Используем локальные переменные вне хранилища
-**[propel/propel](https://github.com/propelorm/Propel2)** Propel2 мощная и шустрая ОРМ.
+**[vlucas/phpdotenv](https://github.com/vlucas/phpdotenv)** Используем локальные переменные вне хранилища  
+**[propel/propel](https://github.com/propelorm/Propel2)** Propel2 мощная и шустрая ОРМ.  
 
 ## Getting started
 I've included a Vagrantfile which should make getting setup extremely simple. I assume [composer](https://getcomposer.org) is installed.
