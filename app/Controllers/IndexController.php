@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Twig_Environment;
 use Models\User\Base\UserQuery;
 use Symfony\Component\VarDumper\VarDumper;
-
 use Models\User\UserRepo;
 
 class IndexController
@@ -22,7 +21,7 @@ class IndexController
      * @var \Models\User\UserRepo $UserRepo
      */
     protected $UserRepo;
-    
+
     /**
      * IndexController, constructed by container
      *
@@ -30,7 +29,7 @@ class IndexController
      */
     public function __construct(Twig_Environment $twig, UserRepo $UserRepo)
     {
-        $this->twig     = $twig;
+        $this->twig = $twig;
         $this->UserRepo = $UserRepo;
     }
 
@@ -42,7 +41,7 @@ class IndexController
      */
     public function get($args)
     {
-        
+
         $Users = $this->UserRepo->findMany();
 
         $table = \Donquixote\Cellbrush\Table\Table::create();
@@ -62,24 +61,23 @@ class IndexController
             $i++;
         }
 
-        return new Response($this->twig->render('pages/index.html.twig',[
-            "table" => $table->render()
+        return new Response($this->twig->render('pages/index.html.twig', [
+                    "table" => $table->render()
         ]));
     }
-    
-    public function add($args){
-        
+
+    public function add($args)
+    {
+
         $User = $this->UserRepo->build();
         $User->setEmail('email.ru');
         //VarDumper::dump($User);
-        
-        try{
+
+        try {
             $this->UserRepo->save($User);
             return new Response("success create!");
-        } catch (\Exception $ex) {
+        } catch(\Exception $ex) {
             return new Response("system error:" . $ex->getMessage());
         }
-        
-        
     }
 }
