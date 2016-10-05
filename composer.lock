@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "647fd93c9f65ef6147fe7c7bafdadf80",
+    "hash": "61331069ce7aba615c11210cc56f918c",
     "content-hash": "4695e537c8fafb5d436d5335ef119d76",
     "packages": [
         {
@@ -40,13 +40,13 @@
             "source": {
                 "type": "git",
                 "url": "./packages/selfprice",
-                "reference": "7a5540835709c0cc69e20ed0cb776715ca651c60"
+                "reference": "8ad622843598c7028ce1b0525748866d639c31c0"
             },
             "require": {
                 "league/container": "^2.2",
                 "propel/propel": "~2.0@dev"
             },
-            "type": "package",
+            "type": "library",
             "autoload": {
                 "psr-4": {
                     "Selfprice\\": "src/"
@@ -59,7 +59,7 @@
                 }
             ],
             "description": "test package",
-            "time": "2016-10-05 18:05:24"
+            "time": "2016-10-05 20:16:44"
         },
         {
             "name": "donquixote/cellbrush",

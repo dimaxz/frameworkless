@@ -11,7 +11,7 @@
 	"twig/twig": "^1.24",
 	"propel/propel": "~2.0@dev",
 	"donquixote/cellbrush": "1.0.*",
-	"dimaxz/selfprice":"@dev"
+	"dimaxz/selfprice": "@dev"
     },
     "autoload": {
 	"psr-4": {
@@ -22,5 +22,10 @@
     "repositories": [{
 	    "type": "vcs",
 	    "url": "./packages/selfprice"
-	}]
+	}],
+    "scripts": {
+	"post-update-cmd": [
+	    "Frameworkless\\Controllers\\InstallController::postPackageInstall"
+	]
+    }
 }
