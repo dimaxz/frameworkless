@@ -27,3 +27,4 @@ vendor/
 Icon
 /bootstrap/config.php
 /generated-reversed-database
+/packages
