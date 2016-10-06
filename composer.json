@@ -1,21 +1,31 @@
 {
-    "name": "mmeyer/frameworkless",
+    "name": "dimaxz/frameworkless",
     "description": "Project skeleton",
     "require": {
-        "nikic/fast-route": "^0.8.0",
-        "league/container": "^2.2",
-        "symfony/http-foundation": "^3.0",
-        "symfony/var-dumper": "^3.0",
-        "filp/whoops": "^2.1",
-        "vlucas/phpdotenv": "^2.2",
-        "twig/twig": "^1.24",
+	"nikic/fast-route": "^0.8.0",
+	"league/container": "^2.2",
+	"symfony/http-foundation": "^3.0",
+	"symfony/var-dumper": "^3.0",
+	"filp/whoops": "^2.1",
+	"vlucas/phpdotenv": "^2.2",
+	"twig/twig": "^1.24",
 	"propel/propel": "~2.0@dev",
-	"donquixote/cellbrush"	:   "1.0.*"
+	"donquixote/cellbrush": "1.0.*",
+	"dimaxz/selfprice": "@dev"
     },
     "autoload": {
-        "psr-4": {
-            "Frameworkless\\": "app/",
+	"psr-4": {
+	    "Frameworkless\\": "app/",
 	    "Models\\": "app/Models"
-        }
+	}
+    },
+    "repositories": [{
+	    "type": "vcs",
+	    "url": "./packages/selfprice"
+	}],
+    "scripts": {
+	"post-update-cmd": [
+	    "Frameworkless\\Controllers\\InstallController::postPackageInstall"
+	]
     }
 }
