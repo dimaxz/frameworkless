@@ -84,5 +84,5 @@ DB_PASS=hopefullysecure
 
 ###Propel2 (ORM)
 
-Step 1. $ export `cat .env`
+Step 1. $ export `cat .env` 
 Step 2. propel status
