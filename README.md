@@ -73,25 +73,6 @@ Now, from a controller:
 ```
 
 
-### Spot (database, ORM)
-```
-composer require vlucas/spot2
-```
-
-from here, edit ``bootstrap/app.php`` and add the following:
-```php
-$db = new \Spot\Config();
-$db->addConnection('mysql', [
-    'dbname'   => getenv('DB_NAME'),
-    'user'     => getenv('DB_USER'),
-    'password' => getenv('DB_PASS'),
-    'host'     => getenv('DB_HOST')
-]);
-
-$container->add('\Spot\Locator')
-    ->withArgument($db);
-```
-
 You will also need to add some values to your ``.env``
 ```
 # Database access
@@ -100,43 +81,8 @@ DB_USER=fwl_user
 DB_PASS=hopefullysecure
 ```
 
-Now you can create models! I recommend adding them under a src/Models directory for separation. For example ( ``src/Models/Posts.php``):
-```php
-namespace Frameworkless\Models;
 
-use Spot\Entity;
-
-class Posts extends Entity
-{
-    protected static $table = 'posts';
-    // etc.
-}
-```
-
-And finally from your controller:
-```php
-    private $spot;
-    
-    public function __construct(\Spot\Locator $spot)
-    {
-        $this->spot = $spot;
-    }
-    
-    public function get()
-    {
-        $posts = $this->spot->mapper('Frameworkless\Models\Posts')->all();
-        return new Response('Here are your posts ' . print_r($posts, true));
-    }
-```
-
-
-## Contributing
-Submit a pull request :) I'll be friendly
-
-Thanks to **@waxim** for contributing the Spot example  
-Thanks to **@jaakkytt** for clearing up part of this readme
-
-##Propel
+###Propel2 (ORM)
 
 Step 1. $ export `cat .env`
 Step 2. propel status
