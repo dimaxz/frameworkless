@@ -21,7 +21,7 @@
 ## Getting started
 I've included a Vagrantfile which should make getting setup extremely simple. I assume [composer](https://getcomposer.org) is installed.
 
-Step 1. Install [Vagrant](https://www.vagrantup.com)  
+Step 1. Install [Vagrant](https://www.vagrantup.com)    
 Step 2. Clone this repository  
 Step 3. cd into the repository  
 Step 3. ```composer install```  
@@ -84,5 +84,6 @@ DB_PASS=hopefullysecure
 
 ###Propel2 (ORM)
 
-Step 1. $ export `cat .env` 
-Step 2. propel status
+- Step 1. $ export `cat .env`   
+- Step 2. $ propel status 
+- Step 3. $ propel config:convert   
