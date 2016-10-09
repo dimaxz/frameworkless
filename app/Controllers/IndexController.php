@@ -4,10 +4,9 @@ namespace Frameworkless\Controllers;
 
 use Symfony\Component\HttpFoundation\Response;
 use Twig_Environment;
-
-use Symfony\Component\VarDumper\VarDumper;
 use Core\Models\User\UserRepository;
 use DebugBar\StandardDebugBar;
+use Frameworkless\Helpers\Debug;
 
 class IndexController
 {
@@ -38,8 +37,6 @@ class IndexController
 			StandardDebugBar $debugbar
 			)
     {
-		$Selfprices = \Selfprice\Models\Selfprice\SelfpriceQuery::create()->find();
-
         $this->twig = $twig;
         $this->UserRepository = $UserRepository;
 		$this->debugbar = $debugbar;
@@ -56,7 +53,7 @@ class IndexController
 		$debugbarRenderer = $this->debugbar->getJavascriptRenderer("/assets/debug_bar");
 
 		$this->debugbar["messages"]->addMessage("hello world!");
-
+		
         $Users = $this->UserRepository->findMany();
 
         $table = \Donquixote\Cellbrush\Table\Table::create();
@@ -86,12 +83,12 @@ class IndexController
     public function add($args)
     {
 
-        $User = $this->UserRepo->build();
+        $User = $this->UserRepository->build();
         $User->setEmail('email.ru');
         //VarDumper::dump($User);
 
         try {
-            $this->UserRepo->save($User);
+            $this->UserRepository->save($User);
             return new Response("success create!");
         } catch(\Exception $ex) {
             return new Response("system error:" . $ex->getMessage());
