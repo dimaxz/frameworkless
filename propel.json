@@ -30,7 +30,7 @@
 	    "connection": "default"
 	},
 	"paths": {
-	    "phpDir": "app",
+	    "phpDir": "app/packages",
 	    "phpConfDir": "bootstrap/",
 	    "migrationDir": "db/migrations",
 	    "sqlDir": "db/sql",

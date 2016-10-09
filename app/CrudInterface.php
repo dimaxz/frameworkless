@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Frameworkless;
 
 use Propel\Runtime\ActiveRecord\ActiveRecordInterface;
 

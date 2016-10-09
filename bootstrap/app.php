@@ -40,6 +40,8 @@ if (getenv('MODE') === 'dev') {
 }
 $whoops->register();
 
+//Propel2 config
+require_once __DIR__ . '/config.php';
 
 /**
  * Container setup
@@ -48,7 +50,26 @@ $container = new Container();
 $container->add('Twig_Environment')
     ->withArgument(new Twig_Loader_Filesystem(__DIR__ . '/../app/views/'));
 
-$container->add(Models\User\UserRepo::class);
+/**
+ * debug bar
+ */
+$logger = new Monolog\Logger('defaultLogger');
+$logger->pushHandler(new Monolog\Handler\StreamHandler('php://stderr'));
+Propel\Runtime\Propel::getServiceContainer()->setLogger('defaultLogger', $logger);
+
+$container->add(DebugBar\StandardDebugBar::class)
+		->withMethodCall("addCollector",[
+			new DebugBar\Bridge\Twig\TwigCollector(
+					new DebugBar\Bridge\Twig\TraceableTwigEnvironment($container->get('Twig_Environment'))
+					)
+		])
+		->withMethodCall("addCollector",[
+			new DebugBar\Bridge\Propel2Collector(Propel\Runtime\Propel::getConnection())
+		]);
+
+
+//Ропозиторий
+$container->add(Core\Models\User\UserRepository::class);
 
 
 $container->delegate(
@@ -67,7 +88,6 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
 });
 
 
-require_once __DIR__ . '/config.php';
 
 /**
  * Dispatch

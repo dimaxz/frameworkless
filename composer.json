@@ -11,17 +11,21 @@
 	"twig/twig": "^1.24",
 	"propel/propel": "~2.0@dev",
 	"donquixote/cellbrush": "1.0.*",
-	"dimaxz/selfprice": "@dev"
+	"maximebf/debugbar": "1.*",
+	"monolog/monolog":"1.*",
+	"dimaxz/selfprice": "@dev",
+	"dimaxz/core": "@dev"
     },
     "autoload": {
 	"psr-4": {
 	    "Frameworkless\\": "app/",
-	    "Models\\": "app/Models"
+	    "Core\\": "packages/core/src",
+	    "Selfprice\\": "packages/selfprice/src"
 	}
     },
     "repositories": [{
 	    "type": "vcs",
-	    "url": "./packages/selfprice"
+	    "url": "./packages"
 	}],
     "scripts": {
 	"post-update-cmd": [

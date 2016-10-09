@@ -4,9 +4,10 @@ namespace Frameworkless\Controllers;
 
 use Symfony\Component\HttpFoundation\Response;
 use Twig_Environment;
-use Models\User\Base\UserQuery;
+
 use Symfony\Component\VarDumper\VarDumper;
-use Models\User\UserRepo;
+use Core\Models\User\UserRepository;
+use DebugBar\StandardDebugBar;
 
 class IndexController
 {
@@ -18,19 +19,30 @@ class IndexController
 
     /**
      *
-     * @var \Models\User\UserRepo $UserRepo
+     * @var \Models\User\UserRepository $UserRepository
      */
-    protected $UserRepo;
+    protected $UserRepository;
 
-    /**
+	
+	protected $debugbar;
+
+
+	/**
      * IndexController, constructed by container
      *
      * @param Twig_Environment $twig
      */
-    public function __construct(Twig_Environment $twig, UserRepo $UserRepo)
+    public function __construct(
+			Twig_Environment $twig, 
+			UserRepository $UserRepository,
+			StandardDebugBar $debugbar
+			)
     {
+		$Selfprices = \Selfprice\Models\Selfprice\SelfpriceQuery::create()->find();
+
         $this->twig = $twig;
-        $this->UserRepo = $UserRepo;
+        $this->UserRepository = $UserRepository;
+		$this->debugbar = $debugbar;
     }
 
     /**
@@ -41,8 +53,11 @@ class IndexController
      */
     public function get($args)
     {
+		$debugbarRenderer = $this->debugbar->getJavascriptRenderer("/assets/debug_bar");
 
-        $Users = $this->UserRepo->findMany();
+		$this->debugbar["messages"]->addMessage("hello world!");
+
+        $Users = $this->UserRepository->findMany();
 
         $table = \Donquixote\Cellbrush\Table\Table::create();
         $table->addColNames([0, 1, 2]);
@@ -62,7 +77,9 @@ class IndexController
         }
 
         return new Response($this->twig->render('pages/index.html.twig', [
-                    "table" => $table->render()
+                    "table"			=> $table->render(),
+					"debugbar_Head"	=>	$debugbarRenderer->renderHead(),
+					"debugbar_Body"	=>	$debugbarRenderer->render()
         ]));
     }
 

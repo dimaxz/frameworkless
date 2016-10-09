@@ -13,7 +13,7 @@ class InstallController
 
         $iterator = $finder
                 ->files()
-                ->in($root_path . "/vendor/*/*/install/db");
+                ->in($root_path . "/vendor/*/*/db");
 
         foreach ($iterator as $file) {
             //print $file->getRealpath() . PHP_EOL;
