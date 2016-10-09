@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="default"  namespace="Selfprice\Models">
+    <table name="selfprice" package="Models.Selfprice" phpName="Selfprice" namespace="Selfprice">
+	<column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+	<column name="name" phpName="Name" type="VARCHAR" size="50"/>
+	<column name="datecreate" phpName="Datecreate" type="TIMESTAMP"/>
+	<column name="desc" phpName="Desc" type="VARCHAR" size="255"/>
+	<vendor type="mysql">
+	    <parameter name="Engine" value="InnoDB"/>
+	</vendor>
+    </table>
+</database>
