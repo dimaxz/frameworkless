@@ -17,6 +17,7 @@
 **[twig/twig](https://github.com/twigphp/Twig)** Надежный шаблонизатор.  
 **[vlucas/phpdotenv](https://github.com/vlucas/phpdotenv)** Используем локальные переменные вне хранилища  
 **[propel/propel](https://github.com/propelorm/Propel2)** Propel2 мощная и шустрая ОРМ.  
+**[maximebf/debugbar](https://github.com/martynbiz/phpdebugbar)** Панель отладки, интеграция с Propel2.  
 
 ## Getting started
 I've included a Vagrantfile which should make getting setup extremely simple. I assume [composer](https://getcomposer.org) is installed.
