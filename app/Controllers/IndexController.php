@@ -40,6 +40,10 @@ class IndexController
         $this->twig = $twig;
         $this->UserRepository = $UserRepository;
 		$this->debugbar = $debugbar;
+		$logger = new \Monolog\Logger('mylogger');
+		$this->debugbar->addCollector(new \DebugBar\Bridge\MonologCollector($logger));
+		
+		$logger->addError('start work',[1,2,'test']);
     }
 
     /**
@@ -72,7 +76,7 @@ class IndexController
                 $User->getEmail()]);
             $i++;
         }
-
+		
         return new Response($this->twig->render('pages/index.html.twig', [
                     "table"			=> $table->render(),
 					"debugbar_Head"	=>	$debugbarRenderer->renderHead(),
