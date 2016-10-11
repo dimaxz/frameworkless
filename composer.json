@@ -14,6 +14,7 @@
 	"maximebf/debugbar": "1.*",
 	"monolog/monolog":"1.*",
 	"fzaninotto/faker" :"1.6.*",
+	"symfony/console": "^2.8 || ^3.0",
 	"dimaxz/selfprice": "@dev",
 	"dimaxz/core": "@dev"
     },
@@ -33,7 +34,7 @@
 	}],
     "scripts": {
 	"post-update-cmd": [
-	    "Frameworkless\\Controllers\\InstallController::postPackageInstall"
+	    "php command packages:install"
 	]
     }
 }
