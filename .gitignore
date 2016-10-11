@@ -7,8 +7,8 @@
 
 ### Composer template
 composer.phar
-vendor/
-build/
+/vendor
+/build
 
 
 ### Vagrant template
