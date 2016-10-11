@@ -3,7 +3,6 @@
 namespace Core\Models\User;
 
 use Propel\Runtime\ActiveRecord\ActiveRecordInterface;
-
 use Core\Models\User\User;
 use Core\Models\User\UserQuery;
 
@@ -42,7 +41,7 @@ class UserRepository implements \Frameworkless\CrudInterface
 
     public function delete(ActiveRecordInterface $Model)
     {
-        
+        return $Model->delete();
     }
 
     /**
@@ -68,7 +67,7 @@ class UserRepository implements \Frameworkless\CrudInterface
     
     /**
      * 
-     * @return \Models\User\Models\User\User $User
+     * @return \Core\Models\User\User $User
      */
     public function build(){
         return new User;
