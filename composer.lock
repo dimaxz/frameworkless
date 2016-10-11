@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f5a7d0383c323cf7e3536021157296fe",
-    "content-hash": "79b147d5a4a49adb598104cf908de870",
+    "hash": "090d7edb7742b70d8cb7f7e6b679aa18",
+    "content-hash": "6a3cd27e321503fd362741b0c398bdf3",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -36,11 +36,12 @@
         },
         {
             "name": "dimaxz/core",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
+            "version": "1.0.1",
+            "dist": {
+                "type": "path",
                 "url": "./packages/core",
-                "reference": "284eb66e2b1bf5cdc9f7841a24ae8d5310b71084"
+                "reference": "e014a0fc67d2160a2ca8c750c9c64b9f72586a1a",
+                "shasum": null
             },
             "require": {
                 "league/container": "^2.2",
@@ -58,22 +59,16 @@
                     "email": "dim@lanets.tw1.ru"
                 }
             ],
-            "description": "test package",
-            "time": "2016-10-07 20:57:40"
+            "description": "test package"
         },
         {
             "name": "dimaxz/selfprice",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dimaxz/selfprice.git",
-                "reference": "389205d4df76ece4b839d4a35401490c9679a460"
-            },
+            "version": "1.0.1",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dimaxz/selfprice/zipball/389205d4df76ece4b839d4a35401490c9679a460",
-                "reference": "389205d4df76ece4b839d4a35401490c9679a460",
-                "shasum": ""
+                "type": "path",
+                "url": "./packages/selfprice",
+                "reference": "754e171fba55a31059eee019ec92bfae8ac8b6ce",
+                "shasum": null
             },
             "require": {
                 "league/container": "^2.2",
@@ -85,15 +80,13 @@
                     "Selfprice\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "dimaxz lanetz",
                     "email": "dim@lanets.tw1.ru"
                 }
             ],
-            "description": "test package",
-            "time": "2016-10-06 06:09:01"
+            "description": "test package"
         },
         {
             "name": "donquixote/cellbrush",
@@ -550,16 +543,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0"
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/5277094ed527a1c4477177d102fe4c53551953e0",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
                 "shasum": ""
             },
             "require": {
@@ -593,7 +586,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-09-19 16:02:08"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "symfony/config",

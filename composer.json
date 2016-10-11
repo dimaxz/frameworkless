@@ -25,8 +25,11 @@
 	}
     },
     "repositories": [{
-	    "type": "vcs",
-	    "url": "./packages"
+	    "type": "path",
+	    "url": "./packages/core"	    
+	},{
+	    "type": "path",
+	    "url": "./packages/selfprice"	    
 	}],
     "scripts": {
 	"post-update-cmd": [
