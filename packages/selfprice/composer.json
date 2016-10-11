@@ -1,0 +1,21 @@
+{
+    "name": "dimaxz/selfprice",
+    "description": "test package",
+    "version": "1.0.1",
+    "type": "library",
+    "authors": [
+        {
+            "name": "dimaxz lanetz",
+            "email": "dim@lanets.tw1.ru"
+        }
+    ],
+    "require": {
+	"propel/propel": "~2.0@dev",
+	"league/container": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Selfprice\\": "src/"
+        }
+    }    
+}
