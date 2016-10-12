@@ -1,15 +1,15 @@
 <?php
 
-namespace Frameworkless;
+namespace Frameworkless\Console;
 
-use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Application as CoreApp;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Finder\Finder;
 
-class Console extends Application
+class Application extends CoreApp
 {
     /**
      * Gets the name of the command based on input.
@@ -18,11 +18,11 @@ class Console extends Application
      *
      * @return string The command name
      */
-//    protected function getCommandName(InputInterface $input)
-//    {
-//        // This should return the name of your command.
-//        return 'my_command';
-//    }
+    protected function getCommandName(InputInterface $input)
+    {
+        // This should return the name of your command.
+        return 'help';
+    }
 //	
 //	protected function my_command(){
 //		exit('f');
@@ -39,8 +39,32 @@ class Console extends Application
         // which is used when using the --help option
         $defaultCommands = parent::getDefaultCommands();
 
-       // $defaultCommands[] = new MyCommand();
-		$this->register('packages:install')
+        $defaultCommands[] = new \Symfony\Component\Console\Command\HelpCommand();
+
+
+        return $defaultCommands;
+    }
+
+    /**
+     * Overridden so that the application doesn't expect the command
+     * name to be the first argument.
+     */
+    public function getDefinition()
+    {
+        $inputDefinition = parent::getDefinition();
+        // clear out the normal first argument, which is the command name
+        $inputDefinition->setArguments();
+
+        return $inputDefinition;
+    }
+	
+	
+	
+	
+	
+	
+	function __o(){
+				$this->register('packages:install')
 			->setDescription('Say hello to someone on the command line.')
 			->setDefinition(array(
 				new InputArgument('name', InputArgument::OPTIONAL, 'The name of the person to say hello to.', 'Stranger'),
@@ -76,20 +100,5 @@ class Console extends Application
 				
 				
 			});		
-
-        return $defaultCommands;
-    }
-
-    /**
-     * Overridden so that the application doesn't expect the command
-     * name to be the first argument.
-     */
-    public function getDefinition()
-    {
-        $inputDefinition = parent::getDefinition();
-        // clear out the normal first argument, which is the command name
-        $inputDefinition->setArguments();
-
-        return $inputDefinition;
-    }
+	}
 }

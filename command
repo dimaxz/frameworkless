@@ -7,11 +7,11 @@ foreach (['/../../autoload.php', '/../vendor/autoload.php', '/vendor/autoload.ph
         break;
     }
 }
-if (!class_exists("Frameworkless\Console")) {
+if (!class_exists("Frameworkless\Console\Application")) {
     echo "Please run composer install" . PHP_EOL;
     die(1);
 }
 
-$console = new Frameworkless\Console();
+$console = new Frameworkless\Console\Application();
 
 $console->run();
