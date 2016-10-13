@@ -1,17 +1,22 @@
 #!/usr/bin/env php
 <?php
-foreach (['/../../autoload.php', '/../vendor/autoload.php', '/vendor/autoload.php'] as $file) {
-    $pathname = __DIR__ . $file;
-    if (file_exists($pathname)) {
-        require_once $pathname;
-        break;
-    }
-}
+require_once '/vendor/autoload.php';
+require_once '/bootstrap/config.php';
+
 if (!class_exists("Frameworkless\Console\Application")) {
     echo "Please run composer install" . PHP_EOL;
     die(1);
 }
 
-$console = new Frameworkless\Console\Application();
+use Symfony\Component\Console\Application;
+use Frameworkless\Console\Commands;
 
-$console->run();
+$command = new Commands\InfoCommand();
+$application = new Application();
+$application->add($command);
+$application->setDefaultCommand($command->getName());
+
+$application->add(new Commands\InstallPackagesCommand);
+$application->add(new Commands\SeedCommand);
+
+$application->run();

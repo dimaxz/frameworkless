@@ -6,6 +6,7 @@
 	"league/container": "^2.2",
 	"symfony/http-foundation": "^3.0",
 	"symfony/var-dumper": "^3.0",
+	"symfony/console"   : "^3.0",
 	"filp/whoops": "^2.1",
 	"vlucas/phpdotenv": "^2.2",
 	"twig/twig": "^1.24",

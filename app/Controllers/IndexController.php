@@ -81,23 +81,13 @@ class IndexController
 	{
 
 
-
-		// $User = $this->UserRepository->build();
-		//$User->setEmail('email.ru');
-		//VarDumper::dump($User);
-
 		try {
-			//$this->UserRepository->save($User);
-			//Faker
-//			$generator = \Faker\Factory::create();
-//			$populator = new \Faker\ORM\Propel2\Populator($generator);
-//			$populator->addEntity('Core\Models\User\User', 5);
-//			$insertedPKs = $populator->execute();				
 
 
 
 
 			return new Response("success create!");
+			
 		} catch(\Exception $ex) {
 			return new Response("system error:" . $ex->getMessage());
 		}
