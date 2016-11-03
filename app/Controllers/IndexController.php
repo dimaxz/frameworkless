@@ -24,6 +24,8 @@ class IndexController
 	protected $UserRepository;
 
 	protected $debugbar;
+	
+	use \Psr\Log\LoggerAwareTrait;
 
 	/**
 	 * IndexController, constructed by container
@@ -37,8 +39,10 @@ class IndexController
 		$this->twig = $twig;
 		$this->UserRepository = $UserRepository;
 		$this->debugbar = $debugbar;
-
-		$logger->addDebug('start work', [1, 2, 'test']);
+		
+		$this->logger = $logger;
+		
+		$this->logger->info('start controller');
 	}
 
 	/**
@@ -80,16 +84,35 @@ class IndexController
 	public function add($args)
 	{
 
-
+		$debugbarRenderer = $this->debugbar->getJavascriptRenderer("/assets/debug_bar");
+		
 		try {
 
+			$User = new \Core\Models\User\User();
+			$User->setEmail('tedt@mail.ru');
+			
+			if(!$User->validate()){
+				
+				foreach ($User->getValidationFailures() as $failure) {
+					$this->logger->error("Property ".$failure->getPropertyPath().": ".$failure->getMessage()."\n");
+				}				
+				
+			}
+			else{
+				$this->logger->info('success create!');
+			}
+			
 
-
-
-			return new Response("success create!");
+			
 			
 		} catch(\Exception $ex) {
-			return new Response("system error:" . $ex->getMessage());
+			
+			$this->logger->info("system error:" . $ex->getMessage());
 		}
+		
+		return new Response($this->twig->render('pages/index.html.twig', [
+					"debugbar_Head"	 => $debugbarRenderer->renderHead(),
+					"debugbar_Body"	 => $debugbarRenderer->render()
+		]));
 	}
 }
