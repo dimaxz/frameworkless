@@ -181,7 +181,7 @@ class UserTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'validate' => array('rule5' => array ('column' => 'email','validator' => 'Email',), ),
+            'validate' => array('rule1' => array ('column' => 'email','validator' => 'Email',), ),
         );
     } // getBehaviors()
 

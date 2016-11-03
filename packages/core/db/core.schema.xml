@@ -24,7 +24,7 @@
 	</vendor>
     
 	<behavior name="validate">
-	    <parameter name="rule5" value="{column: email, validator: Email}" />
+	    <parameter name="rule1" value="{column: email, validator: Email}" />
 	</behavior>    
     
     </table>

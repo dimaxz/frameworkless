@@ -15,7 +15,7 @@ class InstallPackagesCommand extends Command
 {
     protected function configure()
     {
-        $this->setName('install:packages')
+        $this->setName('packages:install')
             ->setDescription('Install packages migration and assets');
     }
 
