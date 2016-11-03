@@ -2,15 +2,15 @@
 <html>
     <head>
         <title>{% block title %}Default title{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
 	
 	 {{ debugbar_Head | raw }}
 	
     </head>
     <body>
         {% block content %}Default content{% endblock %}
-        <script src="assets/js/jquery.min.js" type="text/javascript"></script>
-        <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+        <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
 	 {{ debugbar_Body | raw }}
     </body>
 </html>
