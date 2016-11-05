@@ -3,8 +3,8 @@
 namespace Core\Models\User;
 
 use Propel\Runtime\ActiveRecord\ActiveRecordInterface;
-use Core\Models\User\User;
-use Core\Models\User\UserQuery;
+
+use Frameworkless\Exceptions\ValidationException;
 
 /**
  * Description of UserRepo
@@ -52,17 +52,12 @@ class UserRepository implements \Frameworkless\CrudInterface
      */
     public function save(ActiveRecordInterface $Model)
     {
+		
         if (!$Model->validate()) {
-            
-            throw new \Frameworkless\Exceptions\ValidateException("User not validate", $Model->getValidationFailures());
+            throw new ValidationException($Model->getValidationFailures(),"User not valid");
         }        
-        
-        
-        if (!$Model->save()) {
-            throw new \DomainException(sprintf('User not save',$id));
-        }
 
-        return true;        
+        return $Model->save();        
     }
     
     /**

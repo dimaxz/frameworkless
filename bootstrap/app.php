@@ -72,8 +72,11 @@ switch ($route_info[0]) {
         $class_name = $route_info[1][0];
         $method = $route_info[1][1];
         $vars = $route_info[2];
-        $object = $container->get($class_name);
-
+        $object = $container->get($class_name)
+				->setTwig($container->get(Twig_Environment::class))
+				->setDebugbar($container->get(DebugBar\StandardDebugBar::class))
+				;
+		
         $response = $object->$method($vars);
         if ($response instanceof Response) {
             $response->prepare(Request::createFromGlobals());
