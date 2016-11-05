@@ -73,7 +73,7 @@ switch ($route_info[0]) {
         $method = $route_info[1][1];
         $vars = $route_info[2];
         $object = $container->get($class_name);
-
+		
         $response = $object->$method($vars);
         if ($response instanceof Response) {
             $response->prepare(Request::createFromGlobals());
