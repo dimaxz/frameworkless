@@ -2,29 +2,26 @@
 
 namespace Frameworkless\Controllers;
 
-use Core\Models\User\UserRepository;
-use Monolog\Logger;
+use Core\Modules\UserList\UserListController;
 
 class IndexController extends BaseController {
-
+	
 	/**
 	 *
 	 * @var \Models\User\UserRepository $UserRepository
 	 */
 	protected $UserRepository;
 
-	use \Psr\Log\LoggerAwareTrait;
+	protected $userListModule;
 
 	/**
 	 * IndexController, constructed by container
 	 *
 	 * @param Twig_Environment $twig
 	 */
-	public function __construct( UserRepository $UserRepository, Logger $logger) {
+	public function __construct( UserListController $userListModule) {
 
-		$this->UserRepository = $UserRepository;
-
-		$this->logger = $logger;
+		$this->userListModule = $userListModule;
 	}
 
 	/**
@@ -34,35 +31,15 @@ class IndexController extends BaseController {
 	 * @return Response
 	 */
 	public function get($args) {
-		
-		$this->logger->info('home controller');
-
-		$Users = $this->UserRepository->findMany();
-
-		$table	 = \Donquixote\Cellbrush\Table\Table::create();
-		$table->addColNames([0, 1, 2]);
-		$table->addClass('table table-striped');
-		$table->thead()
-				->addRowName('head row')
-				->th('head row', 0, 'Id')
-				->th('head row', 1, 'Имя')
-				->th('head row', 2, 'Email');
-		$i		 = 0;
-		foreach ($Users as $User) {
-			$table->addRow($i)->tdMultiple([
-				$User->getId(),
-				$User->getName(),
-				$User->getEmail()]);
-			$i++;
-		}
-
 		return $this->render('pages/index.html.twig', [
-					"table" => $table->render(),
+				"content" => $this->userListModule->process(),
 		]);
 	}
 
 	public function add($args) {
 
+		
+		return;
 		
 		$this->logger->info('add controller');
 		

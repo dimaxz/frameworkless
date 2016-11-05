@@ -8,10 +8,9 @@
     <div class="container">	
 	<h1><a href="/">Каркас приложения без фреймворка</a></h1>
 	
-	{% if table is defined %}
-	    {{ table | raw  }}
+	{% if content is defined %}
+	    {{ content | raw  }}
 	{% endif %}
 	
-	<a href="/user/add">Добавить нового пользователя</a>
     </div>
 {% endblock %}

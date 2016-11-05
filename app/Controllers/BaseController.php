@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author d.lanec
  */
-abstract class BaseController {
+abstract class BaseController implements \Psr\Log\LoggerAwareInterface, PageInterface {
 	
 	/**
 	 * @var Twig_Environment
@@ -23,11 +23,7 @@ abstract class BaseController {
 	 */
 	protected $debugbar;
 		
-//	function __construct(Twig_Environment $twig,StandardDebugBar $debugbar) {
-//		$this->twig		= $twig;
-//		$this->debugbar = $debugbar;
-//	}
-
+	use \Psr\Log\LoggerAwareTrait;
 
 	protected function render($view,array $data = []){
 		
@@ -39,12 +35,12 @@ abstract class BaseController {
 		return new Response($this->twig->render($view,$data));
 	}
 	
-	function setTwig(Twig_Environment $twig) {
+	public function setTwig(Twig_Environment $twig) {
 		$this->twig = $twig;
 		return $this;
 	}
 
-	function setDebugbar(StandardDebugBar $debugbar) {
+	public function setDebugbar(StandardDebugBar $debugbar) {
 		$this->debugbar = $debugbar;
 		return $this;
 	}

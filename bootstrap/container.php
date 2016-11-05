@@ -48,6 +48,13 @@ $container->add(DebugBar\StandardDebugBar::class)
 
 
 /**
- * Core service provider
+ * inflector interfaces
  */
-//$container->addServiceProvider(new Core\ServiceProvider);
+
+$container->inflector(Psr\Log\LoggerAwareInterface::class)
+          ->invokeMethod('setLogger', [$container->get(Monolog\Logger::class)]);
+
+$container->inflector(Frameworkless\Controllers\PageInterface::class)
+          ->invokeMethod('setTwig', [$container->get(Twig_Environment::class)])
+		  ->invokeMethod('setDebugbar', [$container->get(DebugBar\StandardDebugBar::class)])
+		;
