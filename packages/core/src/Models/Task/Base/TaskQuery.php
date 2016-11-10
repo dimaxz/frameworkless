@@ -31,10 +31,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildTaskQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method     ChildTaskQuery innerJoin($relation) Adds a INNER JOIN clause to the query
  *
- * @method     ChildTaskQuery leftJoinWith($relation) Adds a LEFT JOIN clause and with to the query
- * @method     ChildTaskQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
- * @method     ChildTaskQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
- *
  * @method     ChildTask findOne(ConnectionInterface $con = null) Return the first ChildTask matching the query
  * @method     ChildTask findOneOrCreate(ConnectionInterface $con = null) Return the first ChildTask matching the query, or a new ChildTask object populated from the query conditions when no match is found
  *
@@ -115,27 +111,21 @@ abstract class TaskQuery extends ModelCriteria
         if ($key === null) {
             return null;
         }
-
-        if ($con === null) {
-            $con = Propel::getServiceContainer()->getReadConnection(TaskTableMap::DATABASE_NAME);
-        }
-
-        $this->basePreSelect($con);
-
-        if (
-            $this->formatter || $this->modelAlias || $this->with || $this->select
-            || $this->selectColumns || $this->asColumns || $this->selectModifiers
-            || $this->map || $this->having || $this->joins
-        ) {
-            return $this->findPkComplex($key, $con);
-        }
-
-        if ((null !== ($obj = TaskTableMap::getInstanceFromPool(null === $key || is_scalar($key) || is_callable([$key, '__toString']) ? (string) $key : $key)))) {
+        if ((null !== ($obj = TaskTableMap::getInstanceFromPool((string) $key))) && !$this->formatter) {
             // the object is already in the instance pool
             return $obj;
         }
-
-        return $this->findPkSimple($key, $con);
+        if ($con === null) {
+            $con = Propel::getServiceContainer()->getReadConnection(TaskTableMap::DATABASE_NAME);
+        }
+        $this->basePreSelect($con);
+        if ($this->formatter || $this->modelAlias || $this->with || $this->select
+         || $this->selectColumns || $this->asColumns || $this->selectModifiers
+         || $this->map || $this->having || $this->joins) {
+            return $this->findPkComplex($key, $con);
+        } else {
+            return $this->findPkSimple($key, $con);
+        }
     }
 
     /**
@@ -165,7 +155,7 @@ abstract class TaskQuery extends ModelCriteria
             /** @var ChildTask $obj */
             $obj = new ChildTask();
             $obj->hydrate($row);
-            TaskTableMap::addInstanceToPool($obj, null === $key || is_scalar($key) || is_callable([$key, '__toString']) ? (string) $key : $key);
+            TaskTableMap::addInstanceToPool($obj, (string) $key);
         }
         $stmt->closeCursor();
 

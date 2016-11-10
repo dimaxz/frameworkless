@@ -25,6 +25,7 @@
     
 	<behavior name="validate">
 	    <parameter name="rule1" value="{column: email, validator: Email}" />
+	    <parameter name="rule2" value="{column: email, validator: Unique}" />
 	</behavior>    
     
     </table>

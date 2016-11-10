@@ -3,6 +3,7 @@ namespace Core\Modules\UserList;
 
 use Frameworkless\Controllers;
 use Donquixote\Cellbrush\Table\Table;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Description of UserListController
@@ -18,17 +19,20 @@ class UserList extends Controllers\ModuleController implements Controllers\Modul
 	 */
 	protected $userRepository;
 
-	function __construct(\Core\Models\User\UserRepository $userRepository)
+	protected $request;
+
+	function __construct(\Core\Models\User\UserRepository $userRepository, Request $request)
 	{
-		$this->userRepository = $userRepository;
+		$this->userRepository	= $userRepository;
+		$this->request			=  $request;
 	}
 
-	public function process($args = [])
+	public function process()
 	{
 
 		$this->logger->debug('UserList start');
 
-		if ($args['fn'] == 'add') {
+		if ($this->request->query->get('fn')=='add') {
 			$this->add();
 		}
 
@@ -64,7 +68,7 @@ class UserList extends Controllers\ModuleController implements Controllers\Modul
 			$User = $this->userRepository->build();
 			$User->setEmail('tedt@mail.ru');
 
-			if (!$this->UserRepository->save($User)) {
+			if (!$this->userRepository->save($User)) {
 				throw new Exception('User not save');
 			} else {
 				$this->logger->info("Пользователь успешно сохранен!");
@@ -82,6 +86,5 @@ class UserList extends Controllers\ModuleController implements Controllers\Modul
 
 			$this->logger->info("Произошла ошибка при сохранении пользователя");
 		}
-
 	}
 }

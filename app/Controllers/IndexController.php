@@ -32,7 +32,7 @@ class IndexController extends BaseController {
 	 */
 	public function get($args) {
 		return $this->render('pages/index.html.twig', [
-				"content" => $this->userListModule->process($args),
+				"content" => $this->userListModule->process(),
 		]);
 	}
 

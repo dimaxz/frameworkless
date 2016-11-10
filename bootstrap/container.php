@@ -1,7 +1,7 @@
 <?php
 use League\Container\Container;
 use League\Container\ReflectionContainer;
-
+use Symfony\Component\HttpFoundation\Request;
 /**
  * Container setup
  */
@@ -9,6 +9,11 @@ $container = new Container();
 $container->delegate(
     new ReflectionContainer() // Auto-wiring
 );
+
+/**
+ * set Request
+ */
+$container->add(Request::class,Request::createFromGlobals());
 
 /**
  * set Twig
