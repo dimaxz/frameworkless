@@ -29,7 +29,7 @@ class UserList extends Controllers\ModuleController implements Controllers\Modul
 
 	public function process()
 	{
-
+	
 		$this->logger->debug('UserList start');
 
 		if ($this->request->query->get('fn')=='add') {

@@ -6,6 +6,14 @@ use Propel\Runtime\ActiveRecord\ActiveRecordInterface;
 
 use Frameworkless\Exceptions\ValidationException;
 
+
+use Symfony\Component\Validator\Validator\RecursiveValidator;
+use Symfony\Component\Validator\Mapping\Factory\LazyLoadingMetadataFactory;
+use Symfony\Component\Validator\ConstraintValidatorFactory;
+use Symfony\Component\Translation\IdentityTranslator;
+use Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader;
+use Symfony\Component\Validator\Context\ExecutionContextFactory;
+
 /**
  * Description of UserRepo
  *
@@ -13,7 +21,23 @@ use Frameworkless\Exceptions\ValidationException;
  */
 class UserRepository implements \Frameworkless\CrudInterface
 {   
-    
+	/**
+	 * Symfony\Component\Validator\Validator\RecursiveValidator
+	 * @var type 
+	 */
+	protected $validator;
+			
+    function __construct()
+	{
+		$this->validator = new RecursiveValidator(
+            new ExecutionContextFactory(new IdentityTranslator()),
+            new LazyLoadingMetadataFactory(new StaticMethodLoader()),
+            new ConstraintValidatorFactory()
+        );
+	}
+
+
+	
     public function find(array $conditions = [])
     {
         return UserQuery::create()->findOneByArray($conditions);  
@@ -53,7 +77,7 @@ class UserRepository implements \Frameworkless\CrudInterface
     public function save(ActiveRecordInterface $Model)
     {
 		
-        if (!$Model->validate()) {
+        if (!$Model->validate($this->validator)) {
             throw new ValidationException($Model->getValidationFailures(),"User not valid");
         }        
 
