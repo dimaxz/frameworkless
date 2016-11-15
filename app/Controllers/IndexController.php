@@ -20,10 +20,6 @@ class IndexController extends BaseController {
 					"limit" => 2
 				]);
 		
-		$result .= \App::getModule(UserList::class,[
-					"limit" => 1
-				]);
-		
 		return $this->render('pages/index.html.twig', [
 				"content" => $result,
 		]);
