@@ -10,33 +10,37 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author d.lanec
  */
-class UserList extends Controllers\ModuleController implements Controllers\ModuleInterface
+class UserList extends Controllers\ModuleController
 {
 
 	/**
-	 *
+	 * UserRepository 
 	 * @var \Core\Models\User\UserRepository 
 	 */
 	protected $userRepository;
 
+	/**
+	 * Request
+	 * @var Symfony\Component\HttpFoundation\Request 
+	 */
 	protected $request;
+
+	protected $limit = 5;
 
 	function __construct(\Core\Models\User\UserRepository $userRepository, Request $request)
 	{
-		$this->userRepository	= $userRepository;
-		$this->request			=  $request;
+		$this->userRepository	 = $userRepository;
+		$this->request			 = $request;
 	}
 
 	public function process()
 	{
-	
-		$this->logger->debug('UserList start');
 
-		if ($this->request->query->get('fn')=='add') {
+		if ($this->request->query->get('fn') == 'add') {
 			$this->add();
 		}
 
-		$Users = $this->userRepository->findMany();
+		$Users = $this->userRepository->findMany([],$this->limit);
 
 		$table	 = Table::create();
 		$table->addColNames([0, 1, 2]);

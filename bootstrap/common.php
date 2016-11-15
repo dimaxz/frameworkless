@@ -17,12 +17,20 @@ class App
 		// ограничивает клонирование объекта
 	}
 
+	/**
+	 * Вызов модуля
+	 * @param type $name
+	 * @param array $params
+	 * @return string
+	 */
 	static function getModule($name, array $params = [])
 	{
-		$DI = self::getInstance()->load("DI");
-		$debugbar = $DI->get(DebugBar\StandardDebugBar::class);
+		$DI			 = self::getInstance()->load("DI");
+		$debugbar	 = $DI->get(DebugBar\StandardDebugBar::class);
+		$debugbar['messages']->debug(sprintf('App::getModule %s, with params %s' , $name, json_encode($params) ));
 		$debugbar['time']->startMeasure($name, 'Load module ' . $name);
-		$result = $DI->get($name)->process();	
+		$module		 = $DI->get($name);
+		$result		 = $module->setParams($params)->process();
 		$debugbar['time']->stopMeasure($name);
 		return $result;
 	}

@@ -7,17 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class IndexController extends BaseController {
 
-	protected $userListModule;
-
-	/**
-	 * IndexController, constructed by container
-	 *
-	 * @param Twig_Environment $twig
-	 */
-	public function __construct( UserList $userListModule) {
-
-		$this->userListModule = $userListModule;
-	}
 
 	/**
 	 * Return index page (/)

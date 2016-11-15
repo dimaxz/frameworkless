@@ -1,5 +1,5 @@
 <?php
-namespace Frameworkless\Controllers;
+namespace Frameworkless;
 
 /**
  * Description of ModuleInterafce
@@ -10,4 +10,5 @@ interface ModuleInterface {
 	
 	public function process();
 	
+	public function setParams(array $params = []);
 }

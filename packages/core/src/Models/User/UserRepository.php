@@ -34,9 +34,14 @@ class UserRepository implements \Frameworkless\CrudInterface
         return $User;
     }
 
-    public function findMany(array $conditions = [])
+    public function findMany(array $conditions = [], $limit = false)
     {
-        return UserQuery::create()->findByArray($conditions);    
+		$Users = UserQuery::create()
+				->_if($limit)
+					->limit($limit)
+				->_endif()
+				->findByArray($conditions);
+        return $Users;    
     }
 
     public function delete(ActiveRecordInterface $Model)
