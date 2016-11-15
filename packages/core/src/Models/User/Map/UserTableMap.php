@@ -181,7 +181,7 @@ class UserTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'validate' => array('rule1' => array ('column' => 'email','validator' => 'Email',), 'rule2' => array ('column' => 'email','validator' => 'Unique',), ),
+            'validate' => array('rule1' => array ('column' => 'email','validator' => 'Email','options' => array ('message' => 'поле Email не заполнено',),), 'rule2' => array ('column' => 'email','validator' => 'Unique','options' => array ('message' => 'Email должен быть уникален',),), ),
         );
     } // getBehaviors()
 

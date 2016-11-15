@@ -10,7 +10,7 @@ namespace Frameworkless\Controllers;
 class ModuleController extends BaseController {
 	
 	protected function render($view, array $data = array()) {
-		
+
 		$ref = new \ReflectionClass($this);
 		
 		$tpl = (new \SplFileInfo($ref->getFileName()))->getPath() . DIRECTORY_SEPARATOR .'tpl';

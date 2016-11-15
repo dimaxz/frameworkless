@@ -18,7 +18,7 @@ $container->add(Request::class,Request::createFromGlobals());
 /**
  * set Twig
  */
-$container->add(Twig_Environment::class)
+$container->share(Twig_Environment::class)
     ->withArgument(new Twig_Loader_Filesystem(__DIR__ . '/../app/views/'));
 
 /**
@@ -31,24 +31,30 @@ $container->share(Monolog\Logger::class)
 /**
  * set Propel2 Logger
  */
-Propel\Runtime\Propel::getServiceContainer()->setLogger('defaultLogger', (new Monolog\Logger('defaultLogger'))
-		->pushHandler(new Monolog\Handler\StreamHandler('php://stderr')));
+Propel\Runtime\Propel::getServiceContainer()->setLogger('defaultLogger', 
+		(new Monolog\Logger('defaultLogger'))
+			->pushHandler(new Monolog\Handler\StreamHandler('php://stderr'))
+		);
 
 /**
  * set Debug bar
  */
-$container->add(DebugBar\StandardDebugBar::class)
+$container->share(DebugBar\StandardDebugBar::class)
 		->withMethodCall("addCollector",[
 			new DebugBar\Bridge\Twig\TwigCollector(
-					new DebugBar\Bridge\Twig\TraceableTwigEnvironment($container->get(Twig_Environment::class))
+					new DebugBar\Bridge\Twig\TraceableTwigEnvironment(
+							$container->get(Twig_Environment::class),
+							new DebugBar\DataCollector\TimeDataCollector
+							)
 					)
 		])
 		->withMethodCall("addCollector",[
 			new DebugBar\Bridge\Propel2Collector(Propel\Runtime\Propel::getConnection())
-		])
+		])	
 		->withMethodCall("addCollector",[
 			new \DebugBar\Bridge\MonologCollector($container->get(Monolog\Logger::class))
 		])
+		;
 ;
 
 
@@ -63,3 +69,6 @@ $container->inflector(Frameworkless\Controllers\PageInterface::class)
           ->invokeMethod('setTwig', [$container->get(Twig_Environment::class)])
 		  ->invokeMethod('setDebugbar', [$container->get(DebugBar\StandardDebugBar::class)])
 		;
+
+
+App::getInstance()->import("DI", $container);

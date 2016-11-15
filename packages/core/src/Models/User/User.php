@@ -1,5 +1,4 @@
 <?php
-
 namespace Core\Models\User;
 
 use Core\Models\User\Base\User as BaseUser;
@@ -16,5 +15,7 @@ use Core\Models\User\Base\User as BaseUser;
  */
 class User extends BaseUser
 {
+
+	use \Frameworkless\ValidatorTrait;
 
 }

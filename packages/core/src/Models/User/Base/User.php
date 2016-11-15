@@ -1384,8 +1384,8 @@ abstract class User implements ActiveRecordInterface
      */
     static public function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('email', new Email());
-        $metadata->addPropertyConstraint('email', new Unique());
+        $metadata->addPropertyConstraint('email', new Email(array ('message' => 'поле Email не заполнено',)));
+        $metadata->addPropertyConstraint('email', new Unique(array ('message' => 'Email должен быть уникален',)));
     }
 
     /**

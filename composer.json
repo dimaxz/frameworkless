@@ -24,7 +24,10 @@
 	    "Frameworkless\\": "app/",
 	    "Core\\": "packages/core/src",
 	    "Selfprice\\": "packages/selfprice/src"
-	}
+	},
+	"files"	:[
+	    "./bootstrap/common.php"
+	]
     },
     "repositories": [{
 	    "type": "path",
