@@ -54,9 +54,12 @@ $container->add('PDO')
 You will also need to add some values to your ``.env``
 ```
 # Database access
-DB_CONN=mysql:host=127.0.0.1;dbname=frameworkless;charset=utf8
+MODE=dev
+DB_HOST=localhost:3306
+DB_NAME=frameworkless
 DB_USER=fwl_user
 DB_PASS=hopefullysecure
+
 ```
 
 Now, from a controller:
@@ -89,5 +92,4 @@ DB_PASS=hopefullysecure
 ###Propel2 (ORM)
 
 Step 1. $ export `cat .env`     
-Step 2. $ propel status     
-Step 3. $ propel config:convert   
+Step 2. $ app/command install 

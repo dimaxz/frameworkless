@@ -42,7 +42,7 @@ class Application extends CoreApp
         $defaultCommands[] = new \Symfony\Component\Console\Command\HelpCommand();
 
 		$defaultCommands[] = new \Frameworkless\Console\Commands\TestCommand();
-
+	
         return $defaultCommands;
     }
 
