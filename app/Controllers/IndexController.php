@@ -17,7 +17,7 @@ class IndexController extends BaseController {
 	public function get($args) {
 		
 		$result = \App::getModule(UserList::class,[
-					"limit" => 2
+					"limit" => 50
 				]);
 		
 		return $this->render('pages/index.html.twig', [

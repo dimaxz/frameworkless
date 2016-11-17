@@ -43,17 +43,19 @@ class UserList extends Controllers\ModuleController
 		$Users = $this->userRepository->findMany([],$this->limit);
 
 		$table	 = Table::create();
-		$table->addColNames([0, 1, 2]);
+		$table->addColNames([0, 1, 2,3]);
 		$table->addClass('table table-striped');
 		$table->thead()
 				->addRowName('head row')
 				->th('head row', 0, 'Id')
-				->th('head row', 1, 'Имя')
-				->th('head row', 2, 'Email');
+				->th('head row', 1, 'Регистрация')
+				->th('head row', 2, 'Имя')
+				->th('head row', 3, 'Email');
 		$i		 = 0;
 		foreach ($Users as $User) {
 			$table->addRow($i)->tdMultiple([
 				$User->getId(),
+				$User->getCreatedAt("d.m.Y"),
 				$User->getName(),
 				$User->getEmail()]);
 			$i++;
