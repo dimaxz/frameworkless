@@ -17,8 +17,8 @@ use Frameworkless\Exceptions\ValidationException;
 trait ValidatorTrait{
 
     /**
-     * Symfony\Component\Validator\Validator\RecursiveValidator
-     * @var type 
+     * 
+     * @var Symfony\Component\Validator\Validator\RecursiveValidator
      */
     protected $validator;
 
@@ -34,4 +34,8 @@ trait ValidatorTrait{
 	}
 	return $result;
     }
+
+    public abstract function validate(\Symfony\Component\Validator\Validator\ValidatorInterface $validator = NULL);
+
+    public abstract function getValidationFailures();
 }

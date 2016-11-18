@@ -12,7 +12,7 @@ class IndexController extends BaseController{
      * @param array $args
      * @return Response
      */
-    public function get($args){
+    public function get(){
 
 	$result = \App::getModule(UserList::class, [
 		    "limit" => 50

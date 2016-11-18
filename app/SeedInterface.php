@@ -8,7 +8,7 @@ namespace Frameworkless;
  */
 interface SeedInterface{
 
-    static public function build($id = 1);
+    public static function build($id = 1);
 
-    static public function reset();
+    public static function reset();
 }
