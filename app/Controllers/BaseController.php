@@ -32,7 +32,7 @@ abstract class BaseController implements \Psr\Log\LoggerAwareInterface, PageInte
 	$data["debugbar_Head"]	 = $debugbarRenderer->renderHead();
 	$data["debugbar_Body"]	 = $debugbarRenderer->render();
 
-	return new Response($this->twig->render($view, $data));
+	return $this->twig->render($view, $data);
     }
 
     public function setTwig(Twig_Environment $twig){

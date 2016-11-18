@@ -18,8 +18,8 @@ class IndexController extends BaseController{
 		    "limit" => 50
 	]);
 
-	return $this->render('pages/index.html.twig', [
+	return new Response($this->render('pages/index.html.twig', [
 		    "content" => $result,
-	]);
+	]));
     }
 }
