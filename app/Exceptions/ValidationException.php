@@ -1,5 +1,4 @@
 <?php
-
 namespace Frameworkless\Exceptions;
 
 /**
@@ -7,19 +6,18 @@ namespace Frameworkless\Exceptions;
  *
  * @author Dmitriy
  */
-class ValidationException extends \Exception {
+class ValidationException extends \Exception{
 
-	private $failures;
+    private $failures;
 
-	public function __construct($failures, $message = "", $code = 0, $previous = null) {
-		
-		parent::__construct($message, $code, $previous);
-		
-		$this->failures = $failures;
-	}
+    public function __construct($failures, $message = "", $code = 0, $previous = null){
 
-	function getFailures() {
-		return $this->failures;
-	}
+	parent::__construct($message, $code, $previous);
 
+	$this->failures = $failures;
+    }
+
+    function getFailures(){
+	return $this->failures;
+    }
 }

@@ -14,32 +14,30 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
  *
  * @author Dmitriy
  */
-class InstallCommand extends Command
-{
-    protected function configure()
-    {
-        $this->setName('install')
-            ->setDescription('Install project, up migration and seeds');
+class InstallCommand extends Command{
+
+    protected function configure(){
+	$this->setName('install')
+		->setDescription('Install project, up migration and seeds');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    { 
-		
-		$command	 = $this->getApplication()->find('config:convert');
-		$returnCode	 = $command->run(new ArrayInput([
-				'command'	 => 'config:convert'
-		]), $output);
-		
-		$command	 = $this->getApplication()->find('packages:install');
-		$returnCode	 = $command->run(new ArrayInput([
-				'command'	 => 'packages:install'
+    protected function execute(InputInterface $input, OutputInterface $output){
+
+	$command	 = $this->getApplication()->find('config:convert');
+	$returnCode	 = $command->run(new ArrayInput([
+	    'command' => 'config:convert'
 		]), $output);
 
-		$command	 = $this->getApplication()->find('migration:migrate');
-		$returnCode	 = $command->run(new ArrayInput([
-				'command'	 => 'migration:migrate'
-		]), $output);		
+	$command	 = $this->getApplication()->find('packages:install');
+	$returnCode	 = $command->run(new ArrayInput([
+	    'command' => 'packages:install'
+		]), $output);
 
-		$output->writeln("install completed!");
+	$command	 = $this->getApplication()->find('migration:migrate');
+	$returnCode	 = $command->run(new ArrayInput([
+	    'command' => 'migration:migrate'
+		]), $output);
+
+	$output->writeln("install completed!");
     }
 }

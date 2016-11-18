@@ -6,9 +6,9 @@ namespace Frameworkless;
  *
  * @author d.lanec
  */
-interface ModuleInterface {
-	
-	public function process();
-	
-	public function setParams(array $params = []);
+interface ModuleInterface{
+
+    public function process();
+
+    public function setParams(array $params = []);
 }

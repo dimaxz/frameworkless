@@ -1,17 +1,16 @@
 #!/usr/bin/env php
 <?php
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-if(file_exists(__DIR__.'/../bootstrap/config.php'))
-	include_once __DIR__.'/../bootstrap/config.php';
+if(file_exists(__DIR__ . '/../bootstrap/config.php'))
+    include_once __DIR__ . '/../bootstrap/config.php';
 
-if (!class_exists("Frameworkless\Console\Application")) {
+if(!class_exists("Frameworkless\Console\Application")){
     echo "Please run composer install" . PHP_EOL;
     die(1);
 }
 
 use Frameworkless\Console\Application;
-
 
 $application = new Application();
 $application->setDefaultCommand("info");

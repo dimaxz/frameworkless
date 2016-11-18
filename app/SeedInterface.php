@@ -1,5 +1,4 @@
 <?php
-
 namespace Frameworkless;
 
 /**
@@ -7,9 +6,9 @@ namespace Frameworkless;
  *
  * @author Dmitriy
  */
-interface SeedInterface
-{
-	static public function build($id = 1);
-	
-	static public function reset();
+interface SeedInterface{
+
+    static public function build($id = 1);
+
+    static public function reset();
 }

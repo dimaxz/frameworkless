@@ -10,87 +10,83 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author d.lanec
  */
-class UserList extends Controllers\ModuleController
-{
+class UserList extends Controllers\ModuleController{
 
-	/**
-	 * UserRepository 
-	 * @var \Core\Models\User\UserRepository 
-	 */
-	protected $userRepository;
+    /**
+     * UserRepository 
+     * @var \Core\Models\User\UserRepository 
+     */
+    protected $userRepository;
 
-	/**
-	 * Request
-	 * @var Symfony\Component\HttpFoundation\Request 
-	 */
-	protected $request;
+    /**
+     * Request
+     * @var Symfony\Component\HttpFoundation\Request 
+     */
+    protected $request;
 
-	protected $limit = 5;
+    protected $limit = 5;
 
-	function __construct(\Core\Models\User\UserRepository $userRepository, Request $request)
-	{
-		$this->userRepository	 = $userRepository;
-		$this->request			 = $request;
+    function __construct(\Core\Models\User\UserRepository $userRepository, Request $request){
+	$this->userRepository	 = $userRepository;
+	$this->request		 = $request;
+    }
+
+    public function process(){
+
+	if($this->request->query->get('fn') == 'add'){
+	    $this->add();
 	}
 
-	public function process()
-	{
+	$Users = $this->userRepository->findMany([], $this->limit);
 
-		if ($this->request->query->get('fn') == 'add') {
-			$this->add();
-		}
-
-		$Users = $this->userRepository->findMany([],$this->limit);
-
-		$table	 = Table::create();
-		$table->addColNames([0, 1, 2,3]);
-		$table->addClass('table table-striped');
-		$table->thead()
-				->addRowName('head row')
-				->th('head row', 0, 'Id')
-				->th('head row', 1, 'Регистрация')
-				->th('head row', 2, 'Имя')
-				->th('head row', 3, 'Email');
-		$i		 = 0;
-		foreach ($Users as $User) {
-			$table->addRow($i)->tdMultiple([
-				$User->getId(),
-				$User->getCreatedAt("d.m.Y"),
-				$User->getName(),
-				$User->getEmail()]);
-			$i++;
-		}
-
-		return $this->render('default', [
-					'table' => $table->render()
-		]);
+	$table	 = Table::create();
+	$table->addColNames([0, 1, 2, 3]);
+	$table->addClass('table table-striped');
+	$table->thead()
+		->addRowName('head row')
+		->th('head row', 0, 'Id')
+		->th('head row', 1, 'Регистрация')
+		->th('head row', 2, 'Имя')
+		->th('head row', 3, 'Email');
+	$i	 = 0;
+	foreach($Users as $User){
+	    $table->addRow($i)->tdMultiple([
+		$User->getId(),
+		$User->getCreatedAt("d.m.Y"),
+		$User->getName(),
+		$User->getEmail()]);
+	    $i++;
 	}
 
-	protected function add()
-	{
+	return $this->render('default', [
+		    'table' => $table->render()
+	]);
+    }
 
-		try {
+    protected function add(){
 
-			$User = $this->userRepository->build();
-			$User->setEmail('tedt@mail.ru');
+	try{
 
-			if (!$this->userRepository->save($User)) {
-				throw new Exception('User not save');
-			} else {
-				$this->logger->info("Пользователь успешно сохранен!");
-			}
-		} catch(\Frameworkless\Exceptions\ValidationException $ex) {
+	    $User = $this->userRepository->build();
+	    $User->setEmail('tedt@mail.ru');
 
-			foreach ($ex->getFailures() as $failure) {
-				$this->logger->error("Property " . $failure->getPropertyPath() . ": " . $failure->getMessage() . "\n");
-			}
+	    if(!$this->userRepository->save($User)){
+		throw new Exception('User not save');
+	    } else{
+		$this->logger->info("Пользователь успешно сохранен!");
+	    }
+	} catch(\Frameworkless\Exceptions\ValidationException $ex){
 
-			$this->logger->info("Произошла ошибка при сохранении пользователя");
-		} catch(\Exception $ex) {
+	    foreach($ex->getFailures() as $failure){
+		$this->logger->error("Property " . $failure->getPropertyPath() . ": " . $failure->getMessage() . "\n");
+	    }
 
-			$this->logger->error("system error:" . $ex->getMessage());
+	    $this->logger->info("Произошла ошибка при сохранении пользователя");
+	} catch(\Exception $ex){
 
-			$this->logger->info("Произошла ошибка при сохранении пользователя");
-		}
+	    $this->logger->error("system error:" . $ex->getMessage());
+
+	    $this->logger->info("Произошла ошибка при сохранении пользователя");
 	}
+    }
 }

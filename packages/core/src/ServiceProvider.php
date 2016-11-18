@@ -1,5 +1,4 @@
 <?php
-
 namespace Core;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
@@ -9,15 +8,12 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
  *
  * @author Dmitriy
  */
-class ServiceProvider extends AbstractServiceProvider
-{
+class ServiceProvider extends AbstractServiceProvider{
 
-	protected $provides = [
+    protected $provides = [
+    ];
 
-	];
-
-	public function register()
-	{
-		
-	}
+    public function register(){
+	
+    }
 }
