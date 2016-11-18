@@ -8,21 +8,21 @@ use Symfony\Component\HttpFoundation\Response;
 class IndexController extends BaseController {
 
 
-	/**
-	 * Return index page (/)
-	 *
-	 * @param array $args
-	 * @return Response
-	 */
-	public function get($args) {
+    /**
+     * Return index page (/)
+     *
+     * @param array $args
+     * @return Response
+     */
+    public function get($args) {
 		
-		$result = \App::getModule(UserList::class,[
-					"limit" => 50
-				]);
+        $result = \App::getModule(UserList::class,[
+                    "limit" => 50
+                ]);
 		
-		return $this->render('pages/index.html.twig', [
-				"content" => $result,
-		]);
-	}
+        return $this->render('pages/index.html.twig', [
+                "content" => $result,
+        ]);
+    }
 
 }
