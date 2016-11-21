@@ -1,7 +1,7 @@
 <?php
 namespace Frameworkless\Controllers;
 
-use Core\Modules\UserList\UserList;
+use Core\Modules\UserList\UserList as UserListModule;
 use Symfony\Component\HttpFoundation\Response;
 
 class IndexController extends BaseController{
@@ -14,7 +14,7 @@ class IndexController extends BaseController{
      */
     public function get(){
 
-	$result = \App::getModule(UserList::class, [
+	$result = \App::getModule(UserListModule::class, [
 		    "limit" => 50
 	]);
 
